@@ -9,3 +9,4 @@ export { default as AsexualFlag } from './presets/AsexualFlag';
 export { default as PansexualFlag } from './presets/PansexualFlag';
 export { default as PolysexualFlag } from './presets/PolysexualFlag';
 export { default as AgenderFlag } from './presets/AgenderFlag';
+export { default as OmnisexualFlag } from './presets/OmnisexualFlag';
