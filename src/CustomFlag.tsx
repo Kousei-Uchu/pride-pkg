@@ -1,10 +1,9 @@
 'use client';
 
-// src/CustomFlag.tsx
-import React, { useMemo } from 'react';
+import React, { ImgHTMLAttributes, useMemo } from 'react';
 
-interface PrideFlagCustomProps {
-  colors: [string, number][]; // Array of [color, repeats]
+export interface PrideFlagCustomProps extends ImgHTMLAttributes<HTMLImageElement> {
+  colors: [string, number][];
   rounded?: boolean;
   width?: number;
   height?: number;
@@ -15,8 +14,8 @@ export const PrideFlagCustom: React.FC<PrideFlagCustomProps> = ({
   rounded = false,
   width = 60,
   height = 60,
+  ...rest
 }) => {
-  // Memoize to avoid redrawing every render
   const dataUrl = useMemo(() => {
     const canvas = document.createElement('canvas');
     canvas.width = width;
@@ -24,10 +23,8 @@ export const PrideFlagCustom: React.FC<PrideFlagCustomProps> = ({
     const ctx = canvas.getContext('2d');
     if (!ctx) return '';
 
-    // Count total units
     const totalUnits = colors.reduce((sum, [, repeats]) => sum + repeats, 0);
     let y = 0;
-
     for (const [color, repeats] of colors) {
       const stripeHeight = (repeats / totalUnits) * height;
       ctx.fillStyle = color;
@@ -36,7 +33,6 @@ export const PrideFlagCustom: React.FC<PrideFlagCustomProps> = ({
     }
 
     if (rounded) {
-      // Draw rounded mask
       const maskCanvas = document.createElement('canvas');
       maskCanvas.width = width;
       maskCanvas.height = height;
@@ -58,12 +54,11 @@ export const PrideFlagCustom: React.FC<PrideFlagCustomProps> = ({
       maskCtx.closePath();
       maskCtx.clip();
       maskCtx.drawImage(canvas, 0, 0);
-
       return maskCanvas.toDataURL();
     }
 
     return canvas.toDataURL();
   }, [colors, width, height, rounded]);
 
-  return <img src={dataUrl} width={width} height={height} style={{ borderRadius: rounded ? '12px' : 0 }} alt="Custom Pride Flag" />;
+  return <img src={dataUrl} width={width} height={height} style={{ borderRadius: rounded ? 12 : 0 }} alt="Custom Pride Flag" {...rest} />;
 };
