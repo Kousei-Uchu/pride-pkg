@@ -22,7 +22,12 @@ export default {
   external: ['react', 'react-dom'], // don’t bundle React
   plugins: [
     peerDepsExternal(),
-    resolve(),
+    resolve({
+      preferBuiltins: false,
+      mainFields: ['module', 'jsnext:main', 'main'],
+      extensions: ['.js', '.ts', '.tsx', '.json'],
+      dedupe: ['react', 'react-dom', 'tslib'] // <- add tslib here
+    }),
     commonjs(),
     typescript({ useTsconfigDeclarationDir: true, tsconfigOverride: { compilerOptions: { declaration: true, declarationDir: 'dist' } } }),
     json()
