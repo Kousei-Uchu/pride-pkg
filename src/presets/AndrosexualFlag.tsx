@@ -3,10 +3,10 @@
 import React from 'react';
 import { PrideFlagCustom } from '../CustomFlag';
 
-export default function BisexualFlag(props: Omit<React.ComponentProps<typeof PrideFlagCustom>, 'colors'>) {
+export default function AndrosexualFlag(props: Omit<React.ComponentProps<typeof PrideFlagCustom>, 'colors'>) {
   return (
     <PrideFlagCustom
-      colors={[['#d60270', 2], ['#9b4f96', 1], ['#0038a8', 2]]}
+      colors={[['#01ccff', 1], ['#603524', 1], ['#b799de', 1]]}
       {...props} // safe now, can't overwrite colors
     />
   );

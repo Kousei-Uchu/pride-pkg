@@ -1,12 +1,14 @@
+//MAKE VERTICAL
+
 'use client';
 
 import React from 'react';
 import { PrideFlagCustom } from '../CustomFlag';
 
-export default function BisexualFlag(props: Omit<React.ComponentProps<typeof PrideFlagCustom>, 'colors'>) {
+export default function AndrogyneFlag(props: Omit<React.ComponentProps<typeof PrideFlagCustom>, 'colors'>) {
   return (
     <PrideFlagCustom
-      colors={[['#d60270', 2], ['#9b4f96', 1], ['#0038a8', 2]]}
+      colors={[['#fe007f', 1], ['#9832ff', 1], ['#00b8e7', 1]]}
       {...props} // safe now, can't overwrite colors
     />
   );

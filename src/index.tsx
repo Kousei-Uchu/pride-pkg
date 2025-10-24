@@ -10,3 +10,5 @@ export { default as PansexualFlag } from './presets/PansexualFlag';
 export { default as PolysexualFlag } from './presets/PolysexualFlag';
 export { default as AgenderFlag } from './presets/AgenderFlag';
 export { default as OmnisexualFlag } from './presets/OmnisexualFlag';
+export { default as GenderdoeFlag } from './presets/GenderdoeFlag'
+export { default as Abrosexual } from './presets/AbrosexualFlag'

@@ -18,3 +18,5 @@ export declare const PrideFlag: React.FC<PrideFlagCustomProps>;
 export declare const TransgenderFlag: React.FC<PrideFlagCustomProps>;
 export declare const GenderqueerFlag: React.FC<PrideFlagCustomProps>;
 export declare const OmnisexualFlag: React.FC<PrideFlagCustomProps>;
+export declare const GenderdoeFlag: React.FC<PrideFlagCustomProps>;
+export declare const Abrosexual: React.FC<PrideFlagCustomProps>;

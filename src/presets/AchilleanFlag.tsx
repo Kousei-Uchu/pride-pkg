@@ -1,12 +1,14 @@
+//ADD GLYPH
+
 'use client';
 
 import React from 'react';
 import { PrideFlagCustom } from '../CustomFlag';
 
-export default function BisexualFlag(props: Omit<React.ComponentProps<typeof PrideFlagCustom>, 'colors'>) {
+export default function AbrosexualFlag(props: Omit<React.ComponentProps<typeof PrideFlagCustom>, 'colors'>) {
   return (
     <PrideFlagCustom
-      colors={[['#d60270', 2], ['#9b4f96', 1], ['#0038a8', 2]]}
+      colors={[['#9ac6e9', 3], ['#fafdea', 2], ['#9ac6e9', 3]]}
       {...props} // safe now, can't overwrite colors
     />
   );
