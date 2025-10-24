@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ImgHTMLAttributes, useMemo } from 'react';
+import React, { ImgHTMLAttributes, useState, useEffect } from 'react';
 
 export interface PrideFlagCustomProps extends ImgHTMLAttributes<HTMLImageElement> {
   colors: [string, number][];
@@ -16,12 +16,14 @@ export const PrideFlagCustom: React.FC<PrideFlagCustomProps> = ({
   height = 60,
   ...rest
 }) => {
-  const dataUrl = useMemo(() => {
+  const [dataUrl, setDataUrl] = useState<string>('');
+
+  useEffect(() => {
     const canvas = document.createElement('canvas');
     canvas.width = width;
     canvas.height = height;
     const ctx = canvas.getContext('2d');
-    if (!ctx) return '';
+    if (!ctx) return;
 
     const totalUnits = colors.reduce((sum, [, repeats]) => sum + repeats, 0);
     let y = 0;
@@ -37,7 +39,7 @@ export const PrideFlagCustom: React.FC<PrideFlagCustomProps> = ({
       maskCanvas.width = width;
       maskCanvas.height = height;
       const maskCtx = maskCanvas.getContext('2d');
-      if (!maskCtx) return canvas.toDataURL();
+      if (!maskCtx) return;
 
       const radius = Math.min(width, height) * 0.2;
       maskCtx.clearRect(0, 0, width, height);
@@ -54,11 +56,14 @@ export const PrideFlagCustom: React.FC<PrideFlagCustomProps> = ({
       maskCtx.closePath();
       maskCtx.clip();
       maskCtx.drawImage(canvas, 0, 0);
-      return maskCanvas.toDataURL();
+      setDataUrl(maskCanvas.toDataURL());
+      return;
     }
 
-    return canvas.toDataURL();
+    setDataUrl(canvas.toDataURL());
   }, [colors, width, height, rounded]);
+
+  if (!dataUrl) return null; // render nothing on SSR / before canvas is ready
 
   return <img src={dataUrl} width={width} height={height} style={{ borderRadius: rounded ? 12 : 0 }} alt="Custom Pride Flag" {...rest} />;
 };
